@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;400;600&display=swap');
+
+/* =========================
+   GLOBAL THEME
+========================= */
+:root {
+    --bg: #060d1a;
+    --card: rgba(10, 18, 38, 0.85);
+    --text: #d4dff0;
+    --muted: rgba(212, 223, 240, 0.45);
+    --accent: #00bcd4;
+    --border: rgba(0, 188, 212, 0.15);
+    --shadow: none;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    position: relative;
+}
+
+/* Scanline overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 188, 212, 0.012) 2px,
+        rgba(0, 188, 212, 0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Grid background */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 188, 212, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 188, 212, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    position: sticky;
+    top: 0;
+    background: rgba(4, 10, 24, 0.97);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    height: 52px;
+    border-bottom: 1px solid rgba(0, 188, 212, 0.25);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+/* Glow line under nav */
+nav::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
+    opacity: 0.4;
+}
+
+nav a {
+    color: rgba(212, 223, 240, 0.6);
+    text-decoration: none;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    border-left: 1px solid rgba(0, 188, 212, 0.1);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent);
+    background: rgba(0, 188, 212, 0.07);
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+    background: var(--card);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    position: relative;
+    backdrop-filter: blur(4px);
+}
+
+/* Left accent bar */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent), transparent);
+    border-radius: 3px 0 0 3px;
+}
+
+/* Top-right corner bracket */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 18px; height: 18px;
+    border-top: 1px solid rgba(0, 188, 212, 0.35);
+    border-right: 1px solid rgba(0, 188, 212, 0.35);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+h1 {
+    font-family: var(--mono);
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    text-shadow: 0 0 40px rgba(0, 188, 212, 0.2);
+}
+
+h2 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+h3 {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+/* =========================
+   TEXT
+========================= */
+p {
+    color: rgba(212, 223, 240, 0.75);
+    font-size: 14px;
+}
+
+.small {
+    color: var(--muted);
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 1px;
+}
+
+/* Card section label */
+.card-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: rgba(0, 188, 212, 0.45);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   IMAGE PLACEHOLDER BOX
+========================= */
+.img-box {
+    width: 100%;
+    height: 200px;
+    margin-top: 16px;
+    border-radius: 2px;
+    background: rgba(0, 188, 212, 0.02);
+    border: 1px dashed rgba(0, 188, 212, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 188, 212, 0.3);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.img-box::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(0, 188, 212, 0.06);
+}
+
+/* =========================
+   LISTS
+========================= */
+ol, ul {
+    padding-left: 18px;
+}
+
+li {
+    margin-bottom: 10px;
+    color: rgba(212, 223, 240, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================
+   LINKS (outside nav)
+========================= */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+    transition: border-color 0.15s;
+}
+
+a:hover {
+    border-color: var(--accent);
+}
+
+/* =========================
+   CODE / INLINE MONO
+========================= */
+code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(0, 188, 212, 0.08);
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 188, 212, 0.15);
+}
+
+/* =========================
+   IMAGE FIX (override placeholder)
+========================= */
+img.img-box {
+    width: 100%;
+    height: auto !important;        /* override fixed 200px */
+    max-height: 350px;
+    object-fit: contain;            /* keep full image, no crop */
+    border-radius: 2px;
+    margin-top: 16px;
+    display: block;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    background: none;
+}
+
+/* remove placeholder overlay effect on images */
+img.img-box::before {
+    display: none;
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Voltmeter</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root { --accent: #3b82f6; }
+
+        .notice {
+            background: rgba(59, 130, 246, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .notice strong {
+            color: var(--accent);
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .warning strong {
+            color: #ef4444;
+        }
+
+        .step-label {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .breadcrumb span {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="manual1.html" style="background: var(--accent); color: #0b1220;">Voltmeter</a>
+    <a href="manual2.html">Ohmmeter</a>
+    <a href="manual3.html">Function Generator</a>
+    <a href="manual4.html">DC Reference</a>
+    <a href="faq.html">FAQ</a>
+    <a href="safety.html">Safety</a>
+</nav>
+
+<div class="container">
+
+    <!-- TITLE / INTRO -->
+    <div class="card">
+        <div class="breadcrumb">Tool Bench System &rsaquo; <span>Voltmeter</span></div>
+        <h1>Voltmeter</h1>
+        <p>
+            Welcome to the Voltmeter manual. This guide will walk you through everything you need to know to start measuring voltage with the Tool Bench system &mdash; no prior experience required.
+        </p>
+        <p>
+            The voltmeter lets you measure DC voltage and will show you both the reading <em>and</em> how accurate that reading is, so you always know how much to trust the result. For example, you might see something like <strong>2.5V &plusmn; 0.31V</strong> &mdash; this means the system measured 2.5 volts, and the true value is somewhere in that &plusmn; 0.31V window.
+        </p>
+        <p class="small">
+            Measurement range: &plusmn;5V DC &nbsp;&bull;&nbsp; Two modes: External source or Internal Reference
+        </p>
+    </div>
+
+    <!-- BEFORE YOU START -->
+    <div class="card">
+        <h2>Before You Start</h2>
+        <p>
+            The voltmeter has two modes depending on what you want to measure:
+        </p>
+        <ul>
+            <li><strong>External</strong> &mdash; You connect a real-world voltage source (like a battery or power supply) to the system and measure it directly.</li>
+            <li><strong>Internal Reference</strong> &mdash; Instead of an external source, the system uses its own built-in DC Reference module to generate and measure a voltage. Selecting this option will take you to the DC Reference page automatically.</li>
+        </ul>
+        <p>
+            This guide covers both paths. Follow the steps in order and refer to the images at each stage if you&rsquo;re unsure what the screen should look like.
+        </p>
+        <div class="notice">
+            <strong>Note:</strong> If you&rsquo;re a complete beginner, we recommend reading the <a href="safety.html">Safety page</a> before connecting anything to the system.
+        </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="card">
+        <div class="step-label">Step 1</div>
+        <h2>Access the Voltmeter Menu</h2>
+        <p>
+            Start from the main system menu. You should see a list of available tools on the LCD display. Turn the rotary encoder (the clickable dial) to scroll through the options until <strong>Voltmeter</strong> is highlighted, then press the encoder down to select it.
+        </p>
+        <p>
+            The screen will then show the Voltmeter menu, which gives you the choice of measurement source. This will be covered in the next step.
+        </p>
+        <img src="IMG_1632.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card">
+        <div class="step-label">Step 2</div>
+        <h2>Select a Measurement Mode</h2>
+        <p>
+            The Voltmeter menu shows three options:
+        </p>
+        <ul>
+            <li><strong>External</strong> &mdash; Measure voltage from a source you connect yourself</li>
+            <li><strong>Internal Ref</strong> &mdash; Use the system&rsquo;s built-in DC Reference as the voltage source</li>
+            <li><strong>Back</strong> &mdash; Return to the main menu</li>
+        </ul>
+        <p>
+            Turn the encoder to highlight your choice, then press to confirm. The next steps depend on which option you pick &mdash; see the relevant section below.
+        </p>
+        <img src="IMG_1633.jpg" class="img-box">
+    </div>
+
+    <!-- BRANCH: INTERNAL REF -->
+    <div class="card">
+        <h2>Path A &mdash; Internal Reference</h2>
+        <p>
+            If you selected <strong>Internal Ref</strong>, the system will automatically take you to the DC Reference module. There is nothing else to do on this page &mdash; just follow the DC Reference manual from there.
+        </p>
+        <p>
+            The DC Reference module will let you set a voltage, turn it on, and then the Voltmeter will measure and display it for you automatically.
+        </p>
+        <p>
+            <a href="manual4.html">&rarr; Continue to the DC Reference Manual</a>
+        </p>
+        <img src="IMG_1642.jpg" class="img-box">
+    </div>
+
+    <!-- BRANCH: EXTERNAL -->
+    <div class="card">
+        <h2>Path B &mdash; External Voltage Source</h2>
+
+        <div class="step-label">Step 3</div>
+        <h3>Connect Your Voltage Source</h3>
+        <p>
+            Before the system can take a measurement, you need to physically connect your external voltage source to the Tool Bench using the banana plug inputs on the device.
+        </p>
+        <p>
+            Polarity matters here &mdash; connecting the wires the wrong way around won&rsquo;t damage the system, but it will give you an incorrect reading:
+        </p>
+        <ul>
+            <li>Positive wire &rarr; <strong>Red terminal</strong></li>
+            <li>Ground wire &rarr; <strong>Black terminal</strong></li>
+        </ul>
+        <div class="warning">
+            <strong>Warning:</strong> Please connect sources within the &plusmn;5V range. 
+        </div>
+        <img src="IMG_1635.jpg" class="img-box">
+
+        <br>
+        <div class="step-label">Step 4</div>
+        <h3>Start the Measurement</h3>
+        <p>
+            Once your source is connected, select <strong>External</strong> from the Voltmeter menu and press the encoder to confirm. The system will immediately start sampling the voltage automatically &mdash; you don&rsquo;t need to do anything else.
+        </p>
+        <p>
+            The LCD will update continuously and show you two values:
+        </p>
+        <ul>
+            <li><strong>Voltage reading (V)</strong> &mdash; The measured voltage, displayed to 4 decimal places (e.g. <code>V: 2.4983V</code>)</li>
+            <li><strong>Estimated error (&plusmn;)</strong> &mdash; How much the reading could vary from the true value (e.g. <code>+/- 0.031V</code>). A smaller number means a more consistent reading.</li>
+        </ul>
+        <p>
+            The system takes multiple samples and averages them to give you the most accurate result it can. The display refreshes roughly 5 times per second.
+        </p>
+        <div class="notice">
+            <strong>Tip:</strong> If the error value seems large, check that your source is stable and your connections are secure.
+        </div>
+        <img src="IMG_1637.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 5: EXIT -->
+    <div class="card">
+        <div class="step-label">Step 5</div>
+        <h2>Exit the Measurement Screen</h2>
+        <p>
+            When you&rsquo;re done taking your measurement, press the rotary encoder. This will stop the measurement, close the SPI connection in the background, and take you back to the Voltmeter menu.
+        </p>
+        <p>
+            From here you can either take another measurement or navigate elsewhere in the system.
+        </p>
+        <img src="IMG_1633.jpg" class="img-box">
+    </div>
+
+    <!-- BACK TO MAIN -->
+    <div class="card">
+        <h2>Return to the Main Menu</h2>
+        <p>
+            From the Voltmeter menu, scroll down to <strong>Back </strong> and press the encoder. This will take you back to the top-level main menu where you can access any other tool.
+        </p>
+        <img src="IMG_1630.jpg" class="img-box">
+    </div>
+
+    <!-- VIDEO -->
+    <div class="card">
+        <h2>Example Demonstration</h2>
+        <p>
+            Want to see the full process from start to finish? Watch the video walkthrough below, which shows a live measurement using an external source.
+        </p>
+        <p>
+            <a href="#">&#9654; Insert YouTube Link Here</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

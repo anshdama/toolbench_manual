@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DC Reference</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root { --accent: #10b981; }
+
+        .notice {
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .notice strong {
+            color: var(--accent);
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .warning strong {
+            color: #ef4444;
+        }
+
+        .step-label {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .breadcrumb span {
+            color: var(--accent);
+        }
+
+        .voltage-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .voltage-table th {
+            text-align: left;
+            color: var(--accent);
+            border-bottom: 1px solid #1f2a44;
+            padding: 6px 10px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .voltage-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #1a2236;
+            color: var(--text);
+        }
+
+        .voltage-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(16, 185, 129, 0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="manual1.html">Voltmeter</a>
+    <a href="manual2.html">Ohmmeter</a>
+    <a href="manual3.html">Function Generator</a>
+    <a href="manual4.html" style="background: var(--accent); color: #0b1220;">DC Reference</a>
+    <a href="faq.html">FAQ</a>
+    <a href="safety.html">Safety</a>
+</nav>
+
+<div class="container">
+
+    <!-- TITLE / INTRO -->
+    <div class="card">
+        <div class="breadcrumb">Tool Bench System &rsaquo; <span>DC Reference</span></div>
+        <h1>DC Voltage Reference</h1>
+        <p>
+            Welcome to the DC Reference manual. This tool lets you generate a precise, stable DC voltage from within the Tool Bench system itself &mdash; no external power supply needed. You set the voltage you want, turn the output on, and the system produces it on the output terminals while simultaneously measuring it through the built-in Voltmeter so you can verify what&rsquo;s actually coming out.
+        </p>
+        <p class="small">
+            Output range: &plusmn;5V DC in steps of 0.625V &nbsp;&bull;&nbsp; 16 discrete voltage levels &nbsp;&bull;&nbsp; Live measurement via Voltmeter &nbsp;&bull;&nbsp; Output turns off automatically when you navigate away
+        </p>
+        <div class="notice">
+            <strong>Note:</strong> You may have been sent here automatically after selecting <strong>Internal Ref</strong> in the Voltmeter tool.
+        </div>
+    </div>
+
+    <!-- BEFORE YOU START -->
+    <div class="card">
+        <h2>Before You Start</h2>
+        <p>
+            The DC Reference works in three stages:
+        </p>
+        <ul>
+            <li><strong>Set a voltage</strong> &mdash; Use the encoder to dial in the value you want to output, from &minus;5V to +5V in 0.625V steps.</li>
+            <li><strong>Turn the output on</strong> &mdash; The system will send that voltage to the output terminals and begin measuring it live.</li>
+            <li><strong>Turn off or navigate away</strong> &mdash; The output is always switched off automatically when you leave the output screen, whether you press Back or go to Main. You never have to worry about leaving a voltage active by accident.</li>
+        </ul>
+        <div class="warning">
+            <strong>Important:</strong> The output voltage turns off the moment you leave the output screen. Do not rely on it staying active while navigating menus.
+        </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="card">
+        <div class="step-label">Step 1</div>
+        <h2>Access the DC Reference Menu</h2>
+        <p>
+            From the main system menu, turn the rotary encoder to scroll to <strong>DC Reference</strong> and press to select it. The DC Reference menu will appear with four options: <strong>Voltage Value</strong>, <strong>Output</strong>, <strong>Back</strong>, and <strong>Main</strong>.
+        </p>
+        <p>
+            If you arrived here automatically from the Voltmeter&rsquo;s <strong>Internal Ref</strong> option, you will land directly on this menu &mdash; you can skip straight to Step 2.
+        </p>
+        <img src="IMG_1641.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 2: CONNECT EXTERNAL DEVICE -->
+    <div class="card">
+        <div class="step-label">Step 2</div>
+        <h2>Connect Your External Device</h2>
+        <p>
+            If you want to feed the DC Reference output into an external device &mdash; such as a multimeter, oscilloscope, or circuit under test &mdash; connect it to the Tool Bench terminals before turning the output on.
+        </p>
+        <p>
+            There are two connections to make:
+        </p>
+        <ul>
+            <li>Connect your device&rsquo;s positive or signal input to the terminal labelled <strong>DC Out</strong>.</li>
+            <li>Connect your device&rsquo;s ground to the terminal labelled <strong>Ground</strong>.</li>
+        </ul>
+        <p>
+            Refer to the image below to identify the correct terminals on the Tool Bench.
+        </p>
+        <div class="warning">
+            <strong>Warning:</strong> Do not connect anything that sources its own voltage into these terminals. The DC Reference output is meant to drive passive loads or high-impedance inputs only.
+        </div>
+        <img src="IMG_1657.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 3 (was Step 2) -->
+    <div class="card">
+        <div class="step-label">Step 3</div>
+        <h2>Set Your Desired Voltage</h2>
+        <p>
+            Select <strong>Voltage Value</strong> from the menu and press the encoder. This takes you to the voltage input screen, where you can choose the voltage you want to generate.
+        </p>
+        <p>
+            Turn the encoder to scroll through the available voltage levels. Each click moves the value by <strong>0.625V</strong>, and it will wrap between &minus;5.000V and +5.000V. The current value is shown live on the display as you scroll.
+        </p>
+        <p>
+            The 17 available voltage levels are:
+        </p>
+        <table class="voltage-table">
+            <thead>
+                <tr>
+                    <th>Voltage</th>
+                    <th>Voltage</th>
+                    <th>Voltage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>+5.000 V</td><td>+1.250 V</td><td>&minus;1.875 V</td></tr>
+                <tr><td>+4.375 V</td><td>+0.625 V</td><td>&minus;2.500 V</td></tr>
+                <tr><td>+3.750 V</td><td>0.000 V</td><td>&minus;3.125 V</td></tr>
+                <tr><td>+3.125 V</td><td>&minus;0.625 V</td><td>&minus;3.750 V</td></tr>
+                <tr><td>+2.500 V</td><td>&minus;1.250 V</td><td>&minus;4.375 V</td></tr>
+                <tr><td>+1.875 V</td><td></td><td>&minus;5.000 V</td></tr>
+            </tbody>
+        </table>
+        <div class="notice">
+            <strong>Tip:</strong> The voltage is shown with a sign at all times, e.g. <code>V: +2.5000 V</code> or <code>V: -1.2500 V</code>. Positive means above ground, negative means below.
+        </div>
+        <p style="margin-top: 14px;">
+            Once you&rsquo;re happy with the value, press the encoder to confirm and it will automaticlly return you to the DC Reference menu. Your chosen voltage is now saved and ready to be used.
+        </p>
+        <img src="IMG_1643.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 4 (was Step 3) -->
+    <div class="card">
+        <div class="step-label">Step 4</div>
+        <h2>Go to the Output Screen</h2>
+        <p>
+            From the DC Reference menu, scroll to <strong>Output</strong> and press the encoder to enter the output control screen.
+        </p>
+        <p>
+            At the top of this screen you will see a summary row showing your set voltage and the live measured voltage (which shows <code>--</code> until the output is turned on). Below that are four options: <strong>On</strong>, <strong>Off</strong>, <strong>Back</strong>, and <strong>Main</strong>.
+        </p>
+        <img src="IMG_1644.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 5 (was Step 4) -->
+    <div class="card">
+        <div class="step-label">Step 5</div>
+        <h2>Turn the Output On</h2>
+        <p>
+            Scroll to <strong>On</strong> and press the encoder. The system will now:
+        </p>
+        <ul>
+            <li>Send the target voltage to the internal digital potentiometer, which adjusts the hardware circuit to produce the correct output.</li>
+            <li>Enable the output on the hardware pins, making the voltage appear on the output terminals.</li>
+            <li>Begin live voltage measurements using the Voltmeter module, updating the display roughly once per second.</li>
+        </ul>
+        <p>
+            The top row of the screen will update to show both values side by side, for example: <code>S:+2.500 M:+2.487V</code> &mdash; where <strong>S</strong> is your set target and <strong>M</strong> is what the Voltmeter is actually measuring. A small difference between the two is normal.
+        </p>
+        <p>
+            The <strong>On</strong> option will also display <strong>On (Active)</strong> to confirm the output is live.
+        </p>
+        <div class="notice">
+            <strong>Tip:</strong> The measured value (M) refreshes once per second. If it seems unexpected, give it a moment to settle &mdash; especially right after enabling the output.
+        </div>
+        <img src="IMG_1646.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 6 (was Step 5) -->
+    <div class="card">
+        <div class="step-label">Step 6</div>
+        <h2>Turn the Output Off</h2>
+        <p>
+            When you want to stop the output, scroll to <strong>Off</strong> and press the encoder. The system will immediately:
+        </p>
+        <ul>
+            <li>Disable the hardware output pins, cutting the voltage to the terminals.</li>
+            <li>Reset the measured voltage display back to <code>--</code>.</li>
+            <li>Show <strong>Off (Inact)</strong> to confirm the output is no longer active.</li>
+        </ul>
+        <p>
+            You can turn the output back on again by scrolling to <strong>On</strong> and pressing, without needing to re-enter your voltage value.
+        </p>
+        <img src="IMG_1644.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 7 (was Step 6) -->
+    <div class="card">
+        <div class="step-label">Step 7</div>
+        <h2>Exit the Output Screen</h2>
+        <p>
+            When you&rsquo;re done, you have two options from the output screen:
+        </p>
+        <ul>
+            <li><strong>Back</strong> &mdash; Returns you to the DC Reference menu. The output is turned off automatically.</li>
+            <li><strong>Main</strong> &mdash; Returns you to the top-level main menu. The output is turned off automatically.</li>
+        </ul>
+        <p>
+            In both cases, the system shuts down the hardware output safely before navigating away. You do not need to manually turn the output off first &mdash; but it&rsquo;s good practice to do so.
+        </p>
+        <div class="warning">
+            <strong>Reminder:</strong> Navigating away from the output screen always disables the output. If you need the voltage to stay on, remain on the output screen.
+        </div>
+        <img src="IMG_1645.jpg" class="img-box">
+    </div>
+
+    <!-- RETURN TO MAIN -->
+    <div class="card">
+        <h2>Return to the Main Menu</h2>
+        <p>
+            From the DC Reference menu (not the output screen), select <strong>Back</strong> or <strong>Main</strong> to return to the top-level system menu. 
+        </p>
+        <img src="IMG_1630.jpg" class="img-box">
+    </div>
+
+    <!-- VIDEO -->
+    <div class="card">
+        <h2>Example Demonstration</h2>
+        <p>
+            Watch the video below to see the DC Reference in action &mdash; including setting a voltage, enabling the output, and reading the live measurement from the Voltmeter.
+        </p>
+        <p>
+            <a href="#">&#9654; Insert YouTube Link Here</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
