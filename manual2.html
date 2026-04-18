@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ohmmeter</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root { --accent: #f59e0b; }
+
+        .notice {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .notice strong {
+            color: var(--accent);
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .warning strong {
+            color: #ef4444;
+        }
+
+        .step-label {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .breadcrumb span {
+            color: var(--accent);
+        }
+
+        code {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(245, 158, 11, 0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="manual1.html">Voltmeter</a>
+    <a href="manual2.html" style="background: var(--accent); color: #0b1220;">Ohmmeter</a>
+    <a href="manual3.html">Function Generator</a>
+    <a href="manual4.html">DC Reference</a>
+    <a href="faq.html">FAQ</a>
+    <a href="safety.html">Safety</a>
+</nav>
+
+<div class="container">
+
+    <!-- TITLE / INTRO -->
+    <div class="card">
+        <div class="breadcrumb">Tool Bench System &rsaquo; <span>Ohmmeter</span></div>
+        <h1>Ohmmeter</h1>
+        <p>
+            Welcome to the Ohmmeter manual. This tool measures the resistance of a component connected to the Tool Bench system and displays the result directly on the LCD &mdash; along with an error range so you know how precise the reading is. For example, you might see <strong>R: 1050.34 Ohms &plusmn; 12.50 Ohm</strong>, meaning the system measured approximately 1050&Omega; and the true value is estimated to fall within that &plusmn; window.
+        </p>
+        
+        <p class="small">
+            Measurement range: ~500&Omega; &ndash; 10k&Omega; &nbsp;&bull;&nbsp; Autoranging &nbsp;&bull;&nbsp; Live continuous reading 
+        </p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="card">
+        <h2>How It Works</h2>
+        <p>
+            To improve accuracy, the system takes <strong>10 samples</strong> in quick succession and averages them. The spread between the highest and lowest readings is used to calculate the &plusmn; error range shown on screen. A smaller error range means the readings were very consistent &mdash; a larger one may indicate a noisy connection or an unstable component.
+        </p>
+        <p>
+            The display refreshes up to <strong>5 times per second</strong>, and only updates when the reading changes by more than 1&Omega; to keep the screen readable.
+        </p>
+        <div class="notice">
+            <strong>Note:</strong> If no resistor is connected, or the resistance is outside the measurable range, the display will show <code>R: None</code>. This is normal &mdash; it simply means the system could not detect a valid component.
+        </div>
+    </div>
+
+    <!-- BEFORE YOU START -->
+    <div class="card">
+        <h2>Before You Start</h2>
+        <p>
+            Unlike the Voltmeter or DC Reference, the Ohmmeter has no sub-menu or mode selection. Once you enter it from the main menu, it immediately begins measuring. All you need to do beforehand is connect your component to the correct input terminals.
+        </p>
+        <div class="warning">
+            <strong>Warning:</strong> Only measure passive resistors. Do not connect powered components, voltage sources, or anything that can source current into the terminals. This can damage the circuit.
+        </div>
+        <div class="warning">
+            <strong>Warning:</strong> The measurable range is approximately <strong>500&Omega; to 10k&Omega;</strong>. Components outside this range may display <code>R: None</code> or give unreliable readings.
+        </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="card">
+        <div class="step-label">Step 1</div>
+        <h2>Connect Your Resistor</h2>
+        <p>
+            Before entering the Ohmmeter from the menu, connect the resistor you want to measure to the external input terminals on the Tool Bench. Connect one leg to any pin from G through J - 26. Then connect the other leg into ground as seen in the photo (between the red and blue lines). Resistance has no polarity, so either leg of the resistor can go into either terminal.
+        </p>
+        <p>
+            Make sure the connection is firm. A loose or intermittent contact will result in noisy readings and a large error value.
+        </p>
+        <img src="IMG_1638.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card">
+        <div class="step-label">Step 2</div>
+        <h2>Access the Ohmmeter</h2>
+        <p>
+            From the main system menu, turn the rotary encoder to highlight <strong>Ohmmeter</strong> and press to select it. The system will immediately open the SPI connection to the internal measurement hardware and begin sampling.
+        </p>
+        <p>
+            The LCD will show the Ohmmeter screen, which has four lines:
+        </p>
+        <ul>
+            <li><strong>Line 1:</strong> <code>Ohmmeter</code> &mdash; the tool name</li>
+            <li><strong>Line 2:</strong> <code>R: XXXX.XX Ohms</code> &mdash; the measured resistance, updated live</li>
+            <li><strong>Line 3:</strong> <code>+/- XX.XX Ohm</code> &mdash; the estimated error range</li>
+            <li><strong>Line 4:</strong> <code>Click: Main</code> &mdash; reminder that pressing the encoder exits</li>
+        </ul>
+        <p>
+            There is no additional setup required &mdash; the reading starts automatically.
+        </p>
+        <img src="IMG_1630.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="card">
+        <div class="step-label">Step 3</div>
+        <h2>Read the Measurement</h2>
+        <p>
+            Watch the display as it updates. A stable reading with a small error range means the system has a confident measurement. For example:
+        </p>
+        <ul>
+            <li><code>R:  1050.34 Ohms</code> with <code>+/-   5.20 Ohm</code> is a stable, confident reading.</li>
+            <li><code>R:  1050.34 Ohms</code> with <code>+/-  80.00 Ohm</code> suggests noise &mdash; check that your connections are secure.</li>
+            <li><code>R: None</code> means no valid component was detected. Check the connection or verify the component is within the 500&Omega;&ndash;10k&Omega; range.</li>
+        </ul>
+        <div class="notice">
+            <strong>Tip:</strong> If the reading is jumping around, try pressing the resistor leads more firmly into the terminals, or check the leads for oxidation or damage.
+        </div>
+        <img src="IMG_1640.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="card">
+        <div class="step-label">Step 4</div>
+        <h2>Exit to the Main Menu</h2>
+        <p>
+            When you have finished taking your measurement, press the rotary encoder once. The system will close the internal SPI connection cleanly and return you directly to the main system menu.
+        </p>
+        <p>
+            There is no dedicated &ldquo;Back&rdquo; step within the Ohmmeter &mdash; pressing the encoder from anywhere on this screen always goes to Main.
+        </p>
+        <img src="IMG_1630.jpg" class="img-box">
+    </div>
+
+    <!-- VIDEO -->
+    <div class="card">
+        <h2>Example Demonstration</h2>
+        <p>
+            Watch the video below to see the Ohmmeter measuring a resistor live, including what the display looks like during a stable reading and how to exit cleanly.
+        </p>
+        <p>
+            <a href="#">&#9654; Insert YouTube Link Here</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

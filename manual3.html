@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Function Generator</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root { --accent: #a855f7; }
+
+        .notice {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .notice strong {
+            color: var(--accent);
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .warning strong {
+            color: #ef4444;
+        }
+
+        .step-label {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .sub-step-label {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 0;
+            border-bottom: 1px solid var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .breadcrumb span {
+            color: var(--accent);
+        }
+
+        code {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(168, 85, 247, 0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(168, 85, 247, 0.15);
+        }
+
+        .flow-path {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .flow-path .node {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 6px;
+            padding: 4px 10px;
+            color: var(--text);
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .flow-path .arrow {
+            color: var(--accent);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="manual1.html">Voltmeter</a>
+    <a href="manual2.html">Ohmmeter</a>
+    <a href="manual3.html" style="background: var(--accent); color: #0b1220;">Function Generator</a>
+    <a href="manual4.html">DC Reference</a>
+    <a href="faq.html">FAQ</a>
+    <a href="safety.html">Safety</a>
+</nav>
+
+<div class="container">
+
+    <!-- TITLE / INTRO -->
+    <div class="card">
+        <div class="breadcrumb">Tool Bench System &rsaquo; <span>Function Generator</span></div>
+        <h1>Function Generator</h1>
+        <p>
+            Welcome to the Function Generator manual. This tool lets you generate a square wave signal at a frequency and amplitude you choose, and output it on the Tool Bench&rsquo;s signal terminal. The output screen shows your live settings so you always know exactly what is being produced.
+        </p>
+        <p>
+            The signal is a square wave centred at 0V, meaning it swings equally above and below ground. For example, if you set an amplitude of 5V, the output will swing from &minus;5V to +5V with a 50% duty cycle &mdash; spending equal time at each level.
+        </p>
+        <div class="notice">
+            <strong>High impedance output:</strong> The function generator is designed to drive high-impedance loads only. 
+        </div>
+        <p class="small" style="margin-top: 14px;">
+            Output type: Square wave, 50% duty cycle &nbsp;&bull;&nbsp; Frequency: 100Hz &ndash; 10kHz &nbsp;&bull;&nbsp; Amplitude: 0V &ndash; &plusmn;10V peak &nbsp;&bull;&nbsp; Resolution: 0.3125V steps &nbsp;&bull;&nbsp; Output turns off automatically when navigating away
+        </p>
+    </div>
+
+    <!-- MENU OVERVIEW -->
+    <div class="card">
+        <h2>Menu Overview</h2>
+        <p>
+            The Function Generator has more options than the other tools, so it helps to understand the layout before diving in. From the main Function Generator menu you can access four settings pages plus the output controls:
+        </p>
+        <ul>
+            <li><strong>Type</strong> &mdash; Select the waveform type (Square Wave only so you can ignore this setup)</li>
+            <li><strong>Frequency</strong> &mdash; Set the output frequency in Hz</li>
+            <li><strong>Amplitude</strong> &mdash; Set the peak amplitude in volts</li>
+            <li><strong>Output</strong> &mdash; Turn the signal on or off and view live settings</li>
+            <li><strong>Back / Main</strong> &mdash; Exit the Function Generator (output turns off automatically)</li>
+        </ul>
+        <p>
+            You can configure Type, Frequency, and Amplitude in any order before turning the output on. The recommended order is shown in the steps below.
+        </p>
+        <div class="notice">
+            <strong>Remember:</strong> The output turns off automatically any time you select <strong>Back</strong> or <strong>Main</strong> from any screen inside the Function Generator. You do not need to manually turn it off first.
+        </div>
+    </div>
+
+    <!-- STEP 1: ACCESS -->
+    <div class="card">
+    <div class="step-label">Step 1</div>
+    <h2>Access the Function Generator</h2>
+    <p>
+        From the main system menu, turn the rotary encoder to highlight <strong>Function Generator</strong> and press to select it. The Function Generator menu will appear, showing up to four options at a time. Scroll up and down with the encoder to see all six options.
+    </p>
+        <img src="IMG_1647real.jpg" class="img-box">
+</div>
+
+    <!-- STEP 2: CONNECT OSCILLOSCOPE -->
+    <div class="card">
+        <div class="step-label">Step 2</div>
+        <h2>Connect Your Oscilloscope</h2>
+        <p>
+            Before configuring any settings, connect your oscilloscope to the Tool Bench so it is ready to display the signal as soon as you turn the output on.
+        </p>
+        <p>
+            There are two connections to make:
+        </p>
+        <ul>
+            <li>Plug your oscilloscope probe tip into the terminal labelled <strong>DC Out</strong> on the Tool Bench.</li>
+            <li>Plug the probe&rsquo;s ground clip into the terminal labelled <strong>Ground</strong>.</li>
+        </ul>
+        <p>
+            Refer to the image below to identify the correct terminals. Getting these the right way round matters &mdash; swapping them will not damage anything, but your oscilloscope will show an inverted or floating signal.
+        </p>
+        <div class="notice">
+            <strong>Tip:</strong> Set your oscilloscope to trigger on a rising edge and auto-scale before turning the output on &mdash; this makes it much easier to see the wave appear cleanly as soon as the signal starts.
+        </div>
+        <img src="IMG_1658.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 3: TYPE (was Step 2) -->
+    <div class="card">
+        <div class="step-label">Step 3</div>
+        <h2>Options Screen and Select a Waveform Type</h2>
+        <p>
+            Now we can see the various options that come with the function generator tool. The type selection is not needed as the Square Wave is the only type and is set by defaut. If you are curious, scroll to <strong>Type</strong> and press the encoder to enter the Type selection screen. The top line shows the currently selected type. Scroll to <strong>Square</strong> and press to confirm it. The system will return you to the Function Generator menu automatically.
+        </p>
+        <p>
+            At the moment, <strong>Square</strong> is the only available waveform type. It is selected by default when you enter the Function Generator, so you can skip this step.
+        </p>
+
+        <div class="flow-path">
+            <span class="node">Function Generator menu</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Type</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Square &rarr; press</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Back to menu</span>
+        </div>
+
+        <p>To exit without changing the type, scroll to <strong>Back</strong> and press. To go straight to the main system menu, select <strong>Main</strong>.</p>
+
+        <img src="IMG_1648.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 4: FREQUENCY (was Step 3) -->
+    <div class="card">
+        <div class="step-label">Step 4</div>
+        <h2>Set the Frequency</h2>
+        <p>
+            Scroll to <strong>Frequency</strong> on the main menu and press the encoder to enter the frequency screen. This screen works slightly differently from the others &mdash; it has two modes: <strong>navigation mode</strong> and <strong>edit mode</strong>.
+        </p>
+
+        <div class="sub-step-label">Navigation mode (default)</div>
+        <p>
+            When you first enter the screen, you are in navigation mode. The encoder scrolls between three items: the frequency value row, <strong>Back</strong>, and <strong>Main</strong>. The currently highlighted item is shown with a <code>&gt;</code> prefix.
+        </p>
+
+        <div class="sub-step-label">Entering edit mode</div>
+        <p>
+            To actually change the frequency, scroll until the <strong>frequency row</strong> is highlighted (it is at the top, index 0) and press the encoder. The display will change &mdash; the prefix becomes <code>*</code> to indicate you are now editing. The encoder no longer scrolls the menu; instead, each click of the encoder rotates the frequency value up or down by <strong>10 Hz per step</strong>.
+        </p>
+
+        <div class="flow-path">
+            <span class="node">Frequency screen</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Highlight frequency row</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Press to enter edit (*)</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Turn to adjust</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Press to confirm</span>
+        </div>
+
+        <p>
+            The frequency range is <strong>100Hz to 10,000Hz</strong>. The value cannot be scrolled below 100Hz or above 10kHz. Once you are happy with the value, press the encoder again to exit edit mode and return to navigation mode. The new frequency is saved and will be applied the next time the output is turned on.
+        </p>
+        <div class="notice">
+            <strong>Tip:</strong> The display always shows the current frequency in Hz, for example <code>F:  5000.0 Hz</code>.  
+        </div>
+        <p>
+            To go back to the Function Generator menu, scroll to <strong>Back</strong> in navigation mode and press. To jump to the main system menu, select <strong>Main</strong> (this will also turn the output off).
+        </p>
+        <img src="IMG_1651.jpg" class="img-box">
+        <img src="IMG_1650.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 5: AMPLITUDE (was Step 4) -->
+    <div class="card">
+        <div class="step-label">Step 5</div>
+        <h2>Set the Amplitude</h2>
+        <p>
+            Scroll to <strong>Amplitude</strong> on the main menu and press the encoder. The amplitude screen shows the current peak voltage value and the valid range.
+        </p>
+        <p>
+            Turn the encoder to increase or decrease the amplitude. Each step changes the value by <strong>0.3125V</strong>, and the range is <strong>0V to 10V peak</strong>. The value shown is the peak voltage of the square wave &mdash; the signal will swing from <em>negative</em> that value to <em>positive</em> that value, centred at 0V. For example, setting <code>A: +5.0000 Vpk</code> produces a wave that goes from &minus;5V to +5V.
+        </p>
+        <div class="flow-path">
+            <span class="node">Function Generator menu</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Amplitude</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Turn to adjust</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">Press to confirm &amp; return</span>
+        </div>
+        <p>
+            Press the encoder to confirm your amplitude and return to the Function Generator menu. 
+        </p>
+        <div class="notice">
+            <strong>Note:</strong> There is no Back or Main option on the amplitude screen. Pressing the encoder always saves and returns to the Function Generator menu.
+        </div>
+        <img src="IMG_1654.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 6: OUTPUT (was Step 5) -->
+    <div class="card">
+        <div class="step-label">Step 6</div>
+        <h2>Turn the Output On</h2>
+        <p>
+            Once you have set your type, frequency, and amplitude, scroll to <strong>Output</strong> on the main menu and press the encoder to enter the output screen.
+        </p>
+        <p>
+            The top line of the output screen shows a summary of your current settings, for example: <code>Sqr 5000Hz 5.00Vpk</code>. Below it are four options: <strong>On</strong>, <strong>Off</strong>, <strong>Back</strong>, and <strong>Main</strong>.
+        </p>
+
+        <div class="sub-step-label">Enabling the output</div>
+        <p>
+            Scroll to <strong>On</strong> and press the encoder. The system will:
+        </p>
+        <ul>
+            <li>Start the hardware PWM signal at your chosen frequency with a 50% duty cycle.</li>
+            <li>Set the amplitude digipot to the correct wiper position for your chosen peak voltage.</li>
+            <li>Display <strong>On (Active)</strong> to confirm the output is live.</li>
+        </ul>
+        <p>
+            The summary line at the top continues to show your live settings while the output is on. The output will remain active as long as you stay on the output screen.
+        </p>
+
+        <div class="sub-step-label">Turning the output off</div>
+        <p>
+            Scroll to <strong>Off</strong> and press the encoder. The PWM signal stops immediately and the amplitude control is reset. The label changes to <strong>Off (Inact)</strong> to confirm the output is no longer active. You can turn it back on again at any time without leaving the screen.
+        </p>
+
+        <div class="warning">
+            <strong>Important:</strong> Selecting <strong>Back</strong> or <strong>Main</strong> from the output screen will turn the output off automatically, even if it was active. The output cannot stay on while you are elsewhere in the menus.
+        </div>
+
+        <img src="IMG_1656.jpg" class="img-box">
+        <img src="IMG_1655.jpg" class="img-box">
+    </div>
+
+    <!-- STEP 7: EXIT (was Step 6) -->
+    <div class="card">
+        <div class="step-label">Step 7</div>
+        <h2>Exit the Function Generator</h2>
+        <p>
+            From the output screen, select <strong>Back</strong> to return to the Function Generator main menu, or <strong>Main</strong> to go directly to the top-level system menu. In both cases the output is turned off automatically.
+        </p>
+        <p>
+            From the Function Generator main menu, selecting <strong>Back</strong> or <strong>Main</strong> also turns off any active output and returns to the system main menu.
+        </p>
+        <img src="IMG_1630.jpg" class="img-box">
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="card">
+        <h2>Quick Reference &mdash; Navigation Summary</h2>
+        <p>Getting lost in the menus? Here&rsquo;s the full path from the top level to each setting:</p>
+        <ul>
+            <li><strong>Change waveform type:</strong> Main menu &rarr; Function Generator &rarr; Type &rarr; Square &rarr; press</li>
+            <li><strong>Change frequency:</strong> Main menu &rarr; Function Generator &rarr; Frequency &rarr; highlight frequency row &rarr; press to edit &rarr; turn &rarr; press to confirm</li>
+            <li><strong>Change amplitude:</strong> Main menu &rarr; Function Generator &rarr; Amplitude &rarr; turn &rarr; press to confirm</li>
+            <li><strong>Turn output on:</strong> Main menu &rarr; Function Generator &rarr; Output &rarr; On &rarr; press</li>
+            <li><strong>Turn output off:</strong> Output screen &rarr; Off &rarr; press <em>(or navigate away)</em></li>
+        </ul>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="card">
+        <h2>Example Demonstration</h2>
+        <p>
+            Watch the video below to see the Function Generator configured and producing a live square wave output, including how to adjust frequency and amplitude while the output is active.
+        </p>
+        <p>
+            <a href="#">&#9654; Insert YouTube Link Here</a>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
