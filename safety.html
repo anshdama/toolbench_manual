@@ -19,13 +19,70 @@
             color: var(--accent);
         }
 
-        .section-title {
-            font-size: 15px;
-            font-weight: bold;
+        .warning {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .warning strong {
+            color: #ef4444;
+        }
+
+        .notice {
+            background: rgba(239, 68, 68, 0.04);
+            border-left: 3px solid rgba(239, 68, 68, 0.4);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .notice strong {
             color: var(--accent);
-            margin: 0 0 12px;
+        }
+
+        /* Safety rule cards get a red left bar instead of cyan */
+        .safety-rule {
+            background: var(--card);
+            padding: 22px 28px;
+            margin-bottom: 14px;
+            border-radius: 3px;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            position: relative;
+            backdrop-filter: blur(4px);
+        }
+
+        .safety-rule::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #ef4444, transparent);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .safety-rule::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 18px; height: 18px;
+            border-top: 1px solid rgba(239, 68, 68, 0.3);
+            border-right: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .rule-tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: rgba(239, 68, 68, 0.5);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -48,42 +105,61 @@
     <!-- TITLE -->
     <div class="card">
         <div class="breadcrumb">Tool Bench System &rsaquo; <span>Safety</span></div>
-        <h1>Safety Information</h1>
+        <h1>Safety</h1>
         <p>
-            Please read this page before using the Tool Bench system for the first time.
+            Read this page before connecting anything to the Tool Bench system. The hardware is designed to be safe when used correctly, but exceeding its rated limits or connecting inappropriate components can cause incorrect readings, damage to the system, or injury. Following the guidelines below will keep both you and the equipment safe.
+        </p>
+        <div class="warning">
+            <strong>Warning:</strong> Always review the relevant tool manual before use. Each tool has its own input limits and connection requirements.
+        </div>
+    </div>
+
+    <!-- VOLTAGE LIMITS -->
+    <div class="safety-rule">
+        <div class="rule-tag">Voltage Limits</div>
+        <h2>Stay Within the Rated Voltage Range</h2>
+        <p>
+            The Voltmeter and DC Reference inputs are rated for a maximum of <strong>&plusmn;5V DC</strong>. Never connect a voltage source that exceeds this range to any terminal on the system. Overvoltage can permanently damage the internal measurement hardware. If you are unsure what voltage your source is producing, measure it with an external multimeter before connecting it to the Tool Bench. The Function Generator output also operates within a &plusmn;10V peak range and should only be connected to high-impedance loads.
         </p>
     </div>
 
-    <!-- SECTION 1 -->
-    <div class="card">
-        <p class="section-title">General Safety</p>
+    <!-- POLARITY -->
+    <div class="safety-rule">
+        <div class="rule-tag">Connections</div>
+        <h2>Observe Correct Polarity and Terminal Assignment</h2>
         <p>
-            <!-- Write your general safety paragraph here -->
+            Always connect the positive wire to the <strong>red terminal</strong> and the ground wire to the <strong>black terminal</strong> when using the Voltmeter with an external source. Reversed polarity will not damage the system but will produce an incorrect reading. For the DC Reference and Function Generator outputs, connect your device&rsquo;s signal input to the <strong>DC Out</strong> terminal and its ground to the <strong>Ground</strong> terminal. Never swap these as a floating or inverted signal on your oscilloscope or load is the typical result of incorrect connections.
         </p>
     </div>
 
-    <!-- SECTION 2 -->
-    <div class="card">
-        <p class="section-title">Electrical Safety</p>
+    <!-- PASSIVE COMPONENTS ONLY -->
+    <div class="safety-rule">
+        <div class="rule-tag">Ohmmeter</div>
+        <h2>Only Connect Passive Resistors to the Ohmmeter</h2>
         <p>
-            <!-- Write your electrical safety paragraph here -->
+            The Ohmmeter is designed to measure passive resistors only. Do not connect powered components, voltage sources, capacitors, inductors, or anything that can source current into the Ohmmeter terminals. Doing so can damage the internal circuitry. Additionally, only components with a resistance between approximately <strong>500&Omega; and 10k&Omega;</strong> will produce valid readings &mdash; values outside this range will display <code>R: None</code> and should not be forced.
         </p>
     </div>
 
-    <!-- SECTION 3 -->
-    <div class="card">
-        <p class="section-title">Connections and Wiring</p>
+    <!-- HIGH IMPEDANCE -->
+    <div class="safety-rule">
+        <div class="rule-tag">Function Generator</div>
+        <h2>Drive High-Impedance Loads Only</h2>
         <p>
-            <!-- Write your connections safety paragraph here -->
+            The Function Generator output is not designed to source significant current. Only connect it to high-impedance loads such as an oscilloscope input or a high-impedance circuit input. Connecting low-impedance loads  (such as speakers, motors, or low-value resistors) can overload the output stage and damage the hardware. If you are using the output to drive a circuit, verify that the input impedance of your load is appropriate before enabling the signal.
         </p>
     </div>
 
-    <!-- SECTION 4 -->
-    <div class="card">
-        <p class="section-title">Operating Limits</p>
+    <!-- GENERAL HANDLING -->
+    <div class="safety-rule">
+        <div class="rule-tag">General</div>
+        <h2>General Handling and Use</h2>
         <p>
-            <!-- Write your operating limits paragraph here -->
+            Do not operate the Tool Bench on conductive surfaces or near liquids. Ensure all connections are secure before enabling any output &mdash; loose wires can cause intermittent shorts or unexpected readings. Turn off any active output (Voltmeter, DC Reference, or Function Generator) before disconnecting leads. When finished, navigate back to the main menu so no output remains active unintentionally. If the system displays unexpected values or behaves abnormally, disconnect all external connections and power cycle the device before continuing.
         </p>
+        <div class="notice">
+            <strong>Note:</strong> If you are a complete beginner, work through each tool manual step by step before attempting to connect external components. The manuals include images of the correct setup at every stage. There is also a demonstration video link avaliable at the bottom of each manual page.
+        </div>
     </div>
 
 </div>

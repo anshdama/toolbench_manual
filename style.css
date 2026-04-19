@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;400;600&display=swap');
-
+ 
 /* =========================
    GLOBAL THEME
 ========================= */
@@ -14,7 +14,7 @@
     --mono: 'Share Tech Mono', monospace;
     --sans: 'Outfit', sans-serif;
 }
-
+ 
 /* =========================
    BASE STYLES
 ========================= */
@@ -27,7 +27,7 @@ body {
     font-size: 15px;
     position: relative;
 }
-
+ 
 /* Scanline overlay */
 body::before {
     content: '';
@@ -43,7 +43,7 @@ body::before {
     pointer-events: none;
     z-index: 9999;
 }
-
+ 
 /* Grid background */
 body::after {
     content: '';
@@ -56,7 +56,7 @@ body::after {
     pointer-events: none;
     z-index: 0;
 }
-
+ 
 /* =========================
    NAVBAR
 ========================= */
@@ -73,7 +73,7 @@ nav {
     z-index: 1000;
     backdrop-filter: blur(8px);
 }
-
+ 
 /* Glow line under nav */
 nav::after {
     content: '';
@@ -84,7 +84,7 @@ nav::after {
     background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
     opacity: 0.4;
 }
-
+ 
 nav a {
     color: rgba(212, 223, 240, 0.6);
     text-decoration: none;
@@ -99,14 +99,15 @@ nav a {
     align-items: center;
     transition: all 0.2s ease;
     position: relative;
+    border-bottom: none;   /* override global link underline */
 }
-
+ 
 nav a:hover,
 nav a.active {
     color: var(--accent);
     background: rgba(0, 188, 212, 0.07);
 }
-
+ 
 nav a.active::after {
     content: '';
     position: absolute;
@@ -114,7 +115,7 @@ nav a.active::after {
     height: 2px;
     background: var(--accent);
 }
-
+ 
 /* =========================
    LAYOUT
 ========================= */
@@ -125,7 +126,7 @@ nav a.active::after {
     position: relative;
     z-index: 1;
 }
-
+ 
 /* =========================
    CARDS
 ========================= */
@@ -138,7 +139,7 @@ nav a.active::after {
     position: relative;
     backdrop-filter: blur(4px);
 }
-
+ 
 /* Left accent bar */
 .card::before {
     content: '';
@@ -149,7 +150,7 @@ nav a.active::after {
     background: linear-gradient(180deg, var(--accent), transparent);
     border-radius: 3px 0 0 3px;
 }
-
+ 
 /* Top-right corner bracket */
 .card::after {
     content: '';
@@ -159,14 +160,14 @@ nav a.active::after {
     border-top: 1px solid rgba(0, 188, 212, 0.35);
     border-right: 1px solid rgba(0, 188, 212, 0.35);
 }
-
+ 
 /* =========================
    HEADINGS
 ========================= */
 h1, h2, h3 {
     margin-top: 0;
 }
-
+ 
 h1 {
     font-family: var(--mono);
     font-size: 36px;
@@ -176,7 +177,7 @@ h1 {
     line-height: 1.1;
     text-shadow: 0 0 40px rgba(0, 188, 212, 0.2);
 }
-
+ 
 h2 {
     font-size: 13px;
     font-weight: 600;
@@ -184,7 +185,7 @@ h2 {
     text-transform: uppercase;
     color: var(--text);
 }
-
+ 
 h3 {
     font-family: var(--mono);
     font-size: 14px;
@@ -192,7 +193,7 @@ h3 {
     letter-spacing: 1px;
     font-weight: 400;
 }
-
+ 
 /* =========================
    TEXT
 ========================= */
@@ -200,14 +201,14 @@ p {
     color: rgba(212, 223, 240, 0.75);
     font-size: 14px;
 }
-
+ 
 .small {
     color: var(--muted);
     font-size: 12px;
     font-family: var(--mono);
     letter-spacing: 1px;
 }
-
+ 
 /* Card section label */
 .card-tag {
     font-family: var(--mono);
@@ -217,9 +218,10 @@ p {
     text-transform: uppercase;
     margin-bottom: 12px;
 }
-
+ 
 /* =========================
-   IMAGE PLACEHOLDER BOX
+   IMAGE — PLACEHOLDER BOX
+   (used when no real image is available)
 ========================= */
 .img-box {
     width: 100%;
@@ -237,29 +239,75 @@ p {
     letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
+    box-sizing: border-box;
 }
-
+ 
 .img-box::before {
     content: '';
     position: absolute;
     inset: 8px;
     border: 1px solid rgba(0, 188, 212, 0.06);
 }
-
+ 
+/* =========================
+   IMAGE — REAL PHOTOS
+   Wrap every <img> in a .img-frame div for
+   consistent sizing across all manual pages.
+========================= */
+.img-frame {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    /* Fixed aspect-ratio keeps every photo the same height */
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* show the full image, never stretch */
+    display: block;
+}
+ 
+/* Legacy <img class="img-box"> used in manual pages */
+img.img-box {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 2px;
+    margin-top: 20px;
+    display: block;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+ 
+/* remove inner dashed inset on actual images */
+img.img-box::before {
+    display: none;
+}
+ 
 /* =========================
    LISTS
 ========================= */
 ol, ul {
     padding-left: 18px;
 }
-
+ 
 li {
     margin-bottom: 10px;
     color: rgba(212, 223, 240, 0.7);
     font-size: 14px;
     line-height: 1.6;
 }
-
+ 
 /* =========================
    LINKS (outside nav)
 ========================= */
@@ -269,11 +317,11 @@ a {
     border-bottom: 1px solid rgba(0, 188, 212, 0.3);
     transition: border-color 0.15s;
 }
-
+ 
 a:hover {
     border-color: var(--accent);
 }
-
+ 
 /* =========================
    CODE / INLINE MONO
 ========================= */
@@ -286,23 +334,13 @@ code {
     border-radius: 2px;
     border: 1px solid rgba(0, 188, 212, 0.15);
 }
-
+ 
 /* =========================
-   IMAGE FIX (override placeholder)
+   DIVIDER — subtle hr
 ========================= */
-img.img-box {
-    width: 100%;
-    height: auto !important;        /* override fixed 200px */
-    max-height: 350px;
-    object-fit: contain;            /* keep full image, no crop */
-    border-radius: 2px;
-    margin-top: 16px;
-    display: block;
-    border: 1px solid rgba(0, 188, 212, 0.2);
-    background: none;
+hr {
+    border: none;
+    border-top: 1px solid rgba(0, 188, 212, 0.1);
+    margin: 20px 0;
 }
-
-/* remove placeholder overlay effect on images */
-img.img-box::before {
-    display: none;
-}
+ 

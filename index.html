@@ -1,14 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <title>Tool Bench User Manual</title>
     <link rel="stylesheet" href="style.css">
+ 
+    <style>
+        /* ── Hero section ── */
+        .hero-card {
+            background: var(--card);
+            padding: 40px 36px 32px;
+            margin-bottom: 16px;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+            position: relative;
+            backdrop-filter: blur(4px);
+            overflow: hidden;
+        }
+ 
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, var(--accent), transparent);
+        }
+ 
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 18px; height: 18px;
+            border-top: 1px solid rgba(0, 188, 212, 0.35);
+            border-right: 1px solid rgba(0, 188, 212, 0.35);
+        }
+ 
+        /* Faint radial glow behind the title */
+        .hero-card .glow {
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,188,212,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+ 
+        .hero-card h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+ 
+        .hero-card p {
+            max-width: 720px;
+            line-height: 1.8;
+        }
+ 
+        /* ── Dual-image grid ── */
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+ 
+        @media (max-width: 600px) {
+            .img-grid { grid-template-columns: 1fr; }
+        }
+ 
+        .img-frame {
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            background: rgba(0, 188, 212, 0.02);
+            aspect-ratio: 4 / 3;          /* uniform proportions */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;           /* no stretch, no crop */
+            display: block;
+        }
+ 
+        /* ── Team placeholder ── */
+        .team-placeholder {
+            width: 100%;
+            height: 180px;
+            border-radius: 2px;
+            background: rgba(0, 188, 212, 0.02);
+            border: 1px dashed rgba(0, 188, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(0, 188, 212, 0.35);
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+        }
+ 
+        .team-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(0, 188, 212, 0.06);
+        }
+ 
+        /* ── Footer card ── */
+        .footer-card {
+            text-align: center;
+            padding: 16px 28px;
+        }
+ 
+        /* ── Tool navigation grid ── */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+ 
+        .tool-tile {
+            background: rgba(0, 188, 212, 0.04);
+            border: 1px solid rgba(0, 188, 212, 0.18);
+            border-radius: 3px;
+            padding: 18px 20px;
+            text-decoration: none;
+            border-bottom: none;          /* override global a border */
+            display: block;
+            transition: background 0.2s, border-color 0.2s;
+            position: relative;
+        }
+ 
+        .tool-tile::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 12px; height: 12px;
+            border-top: 1px solid rgba(0, 188, 212, 0.3);
+            border-right: 1px solid rgba(0, 188, 212, 0.3);
+        }
+ 
+        .tool-tile:hover {
+            background: rgba(0, 188, 212, 0.09);
+            border-color: rgba(0, 188, 212, 0.4);
+            border-bottom: none;
+        }
+ 
+        .tool-tile .tile-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(0, 188, 212, 0.5);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+ 
+        .tool-tile .tile-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+ 
+        .tool-tile .tile-arrow {
+            color: var(--accent);
+            font-size: 18px;
+            position: absolute;
+            right: 16px;
+            bottom: 14px;
+            opacity: 0.5;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+ 
+        .tool-tile:hover .tile-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+    </style>
 </head>
-
+ 
 <body>
-
+ 
 <!-- ================= NAVBAR ================= -->
 <nav>
     <a href="index.html" style="background: var(--accent); color: #0b1220;">Home</a>
@@ -19,49 +197,85 @@
     <a href="faq.html">FAQ</a>
     <a href="safety.html">Safety</a>
 </nav>
-
+ 
 <!-- ================= MAIN CONTENT ================= -->
 <div class="container">
-
+ 
     <!-- TITLE + DESCRIPTION -->
-    <div class="card">
-        <h1>Tool Bench User Manual</h1>
-
+    <div class="hero-card">
+        <div class="glow"></div>
+        <div class="card-tag">System Documentation</div>
+        <h1>Tool Bench<br>User Manual</h1>
         <p>
-        This tool bench has functionality for voltage measurement, resistance measurement, signal generation, and DC voltage referencing, making it a versatile platform for electronics testing and experimentation. The system includes a function generator capable of producing adjustable square waves, an autoranging ohmmeter for measuring resistance values, a voltmeter for accurate DC voltage readings, and a DC voltage reference with selectable output levels. All components are controlled through an interface that displays real-time values, allowing users to monitor and adjust outputs as needed.
-        This website serves as a user manual for the Tool Bench system. It provides step-by-step instructions, visual references, and guidance for each feature. By following this guide, any user can understand and operate the system effectively.
+            This tool bench has functionality for voltage measurement, resistance measurement, signal generation, and DC voltage referencing, making it a versatile platform for electronics testing and experimentation. The system includes a function generator capable of producing adjustable square waves, an autoranging ohmmeter for measuring resistance values, a voltmeter for accurate DC voltage readings, and a DC voltage reference with selectable output levels. All components are controlled through an interface that displays real-time values, allowing users to monitor and adjust outputs as needed.
+        </p>
+        <p>
+            This website serves as a user manual for the Tool Bench system. It provides step-by-step instructions, visual references, and guidance for each feature. By following this guide, any user can understand and operate the system effectively.
         </p>
     </div>
-
-    <!-- PRODUCT IMAGES -->
+ 
+    <!-- TOOL NAVIGATION -->
     <div class="card">
-        <h2>Product Overview</h2>
-
-        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            <img src="IMG_1629.jpg" class="img-box" style="flex: 1;">
-            <img src="IMG_1630.jpg" class="img-box" style="flex: 1;">
+        <div class="card-tag">Manuals</div>
+        <h2>Browse by Tool</h2>
+        <div class="tool-grid">
+            <a href="manual1.html" class="tool-tile">
+                <div class="tile-label">Manual 1</div>
+                <div class="tile-name">Voltmeter</div>
+                <span class="tile-arrow">&rarr;</span>
+            </a>
+            <a href="manual2.html" class="tool-tile">
+                <div class="tile-label">Manual 2</div>
+                <div class="tile-name">Ohmmeter</div>
+                <span class="tile-arrow">&rarr;</span>
+            </a>
+            <a href="manual3.html" class="tool-tile">
+                <div class="tile-label">Manual 3</div>
+                <div class="tile-name">Function Generator</div>
+                <span class="tile-arrow">&rarr;</span>
+            </a>
+            <a href="manual4.html" class="tool-tile">
+                <div class="tile-label">Manual 4</div>
+                <div class="tile-name">DC Reference</div>
+                <span class="tile-arrow">&rarr;</span>
+            </a>
         </div>
     </div>
-
+ 
+    <!-- PRODUCT IMAGES -->
+    <div class="card">
+        <div class="card-tag">Hardware</div>
+        <h2>Product Overview</h2>
+        <div class="img-grid">
+            <div class="img-frame">
+                <img src="IMG_1629.jpg" alt="Tool Bench front view">
+            </div>
+            <div class="img-frame">
+                <img src="IMG_1630.jpg" alt="Tool Bench display view">
+            </div>
+        </div>
+    </div>
+ 
     <!-- TEAM SECTION -->
     <div class="card">
+        <div class="card-tag">About</div>
         <h2>Meet the Team</h2>
-
-        <div class="img-box">Insert Team Picture Here</div>
-
+ 
+        <div class="team-placeholder">Insert Team Picture Here</div>
+ 
         <p>
             Our team, consisting of Jordin, Charlie, Nick, Karsten, and Ansh, collaborated to design and develop a functional electronics tool bench for accurate measurement and signal generation. Our goal was to create a reliable, user-friendly system that includes a function generator, ohmmeter, voltmeter, and DC reference.
         </p>
     </div>
-
+ 
     <!-- FOOTER -->
-    <div class="card">
+    <div class="card footer-card">
         <p class="small">
-            Tool Bench Project — Engineering Design
+            Tool Bench Project &mdash; Engineering Design
         </p>
     </div>
-
+ 
 </div>
-
+ 
 </body>
 </html>
