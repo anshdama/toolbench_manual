@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        :root { --accent: #f97316; }
+        :root { --accent: #e8ff00; }
 
         .breadcrumb {
             font-size: 13px;
@@ -20,15 +20,26 @@
         }
 
         .faq-q {
-            font-size: 16px;
-            font-weight: bold;
+            font-family: var(--mono);
+            font-size: 14px;
             color: var(--accent);
-            margin: 0 0 10px;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
         }
 
         .faq-q::before {
             content: 'Q: ';
             opacity: 0.5;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(245, 158, 11, 0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(245, 158, 11, 0.15);
         }
     </style>
 </head>
@@ -51,49 +62,54 @@
     <!-- TITLE -->
     <div class="card">
         <div class="breadcrumb">Tool Bench System &rsaquo; <span>FAQ</span></div>
-        <h1>Frequently Asked Questions</h1>
+        <h1>FAQ</h1>
         <p>
-            Common questions about using the Tool Bench system. If you can&rsquo;t find an answer here, check the relevant tool manual or the Safety page.
+            Answers to the most common questions about using the Tool Bench system. If your question isn&rsquo;t answered here, refer to the relevant tool manual or the <a href="safety.html">Safety page</a>.
         </p>
     </div>
 
     <!-- Q1 -->
     <div class="card">
-        <p class="faq-q"> ?</p>
+        <div class="card-tag">Question 01</div>
+        <p class="faq-q">Why is my voltage reading showing a large error value?</p>
         <p>
-            <!-- Answer goes here -->
+            A large &plusmn; error on the Voltmeter usually means the readings are inconsistent between samples. The most common causes are an unstable voltage source, a loose connection at the banana plug terminals, or electrical noise in the environment. Start by checking that both the positive and ground connections are firmly seated. If the source itself is unstable (for example, a battery under load) the error will naturally be higher. For the most consistent results, use a regulated power supply and keep leads short.
         </p>
     </div>
 
     <!-- Q2 -->
     <div class="card">
-        <p class="faq-q">?</p>
+        <div class="card-tag">Question 02</div>
+        <p class="faq-q">The Ohmmeter is showing <code>R: None</code> &mdash; what does that mean?</p>
         <p>
-            <!-- Answer goes here -->
+            <code>R: None</code> means the system could not detect a valid resistance on the input terminals. This happens when no component is connected, when the component&rsquo;s resistance is outside the measurable range of approximately <strong>500&Omega; to 10k&Omega;</strong>, or when the connection is too loose to register. Check that the resistor legs are properly inserted &mdash; one leg into any pin from G through J - 26 and the other into ground. If the resistor is within range and the connection looks good, try a different component to rule out a faulty part.
         </p>
     </div>
 
     <!-- Q3 -->
     <div class="card">
-        <p class="faq-q">?</p>
+        <div class="card-tag">Question 03</div>
+        <p class="faq-q">Does the Function Generator output turn off automatically when I leave the menu?</p>
         <p>
-            <!-- Answer goes here -->
+            Yes. Any time you navigate away from the Output page. Whether by selecting <strong>Back</strong> or <strong>Main</strong> from inside the Output page &mdash; the output is turned off automatically. You do not need to manually disable it first. This is a safety feature to prevent a signal from staying active while you are working elsewhere in the menus. If you need the output to stay on, you must remain on the Output screen.
         </p>
     </div>
 
     <!-- Q4 -->
     <div class="card">
-        <p class="faq-q">?</p>
+        <div class="card-tag">Question 04</div>
+        <p class="faq-q">What is the difference between the DC Reference measured value (M) and the set value (S)?</p>
         <p>
-            <!-- Answer goes here -->
+            The set value (<strong>S</strong>) is the voltage you chose from the list &mdash; the target the system is trying to produce. The measured value (<strong>M</strong>) is what the built-in Voltmeter actually reads at the output terminals in real time. A small difference between the two is completely normal and is caused by component tolerances in the hardware circuit. The measured value refreshes approximately once per second, so give it a moment to settle right after enabling the output before drawing conclusions about accuracy.
         </p>
     </div>
 
     <!-- Q5 -->
     <div class="card">
-        <p class="faq-q">?</p>
+        <div class="card-tag">Question 05</div>
+        <p class="faq-q">Can I connect a voltage source greater than &plusmn;5V to the Voltmeter input?</p>
         <p>
-            <!-- Answer goes here -->
+            No. The Voltmeter is rated for a maximum of <strong>&plusmn;5V DC</strong>. Connecting a source outside this range can produce incorrect readings and may damage the internal measurement hardware. Please refrain from doing so under any circumstances.
         </p>
     </div>
 
